@@ -53,7 +53,10 @@
 ## Linea Base
 ```
 Se generará una nueva Linea Base del repositorio el primer día hábil posterior a cada examen.
-La línea base es una configuración revisada formalmente. Nos permite marcar con etiquetas en un determinado momento del tiempo para definir que en ese momento tenemos una configuración que es estable y a la que podemos volver cuando lo consideremos necesario. Esta configuración conserva las características que identificamos como integridad del producto.
+La línea base es una configuración revisada formalmente. Nos permite marcar con etiquetas en un determinado
+momento del tiempo para definir que en ese momento tenemos una configuración que es estable y a la que podemos
+volver cuando lo consideremos necesario. 
+Esta configuración conserva las características que identificamos como integridad del producto.
 Las líneas base se identificarán con la siguiente etiqueta:
 ```
 

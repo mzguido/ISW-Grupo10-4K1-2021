@@ -23,6 +23,9 @@
     │   │   └── TP1
     │   └── No Evaluables
     │       └── TP2
+    │
+    ├── Lineamientos
+    │
     └── README.md
     
 ## Reglas de Nomenclatura y Listado de Ítems de configuración

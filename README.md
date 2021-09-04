@@ -40,6 +40,7 @@
 | `Trabajo Practico No Evaluable` | ISW-2021-`TPNE`-G10-<`Numero`>-<`Tema`> | /Trabajos Prácticos/No Evaluables |
 | `Trabajo Conceptual` | ISW-2021-`TC`-G10-<`Numero`>-<`Tema`> | /Trabajos Prácticos/Conceptuales |
 | `Modalidad Académica` | ISW-2021-ModalidadAcademica-UTN-FRC | /Material Catedra |
+| `Lineamientos` | ISW-2021-LineamientosRepositorio | /Lineamientos |
 
 ## Referencias
 | Siglas | Significado |

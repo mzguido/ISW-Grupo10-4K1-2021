@@ -24,7 +24,7 @@
     │   └── No Evaluables
     │       └── TP2
     │
-    ├── Lineamientos
+    ├── Lineamientos             #Lineamientos del repositorio
     │
     └── README.md
     

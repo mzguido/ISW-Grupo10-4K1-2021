@@ -62,6 +62,8 @@ momento del tiempo para definir que en ese momento tenemos una configuración qu
 volver cuando lo consideremos necesario. 
 Esta configuración conserva las características que identificamos como integridad del producto.
 Las líneas base se identificarán con la siguiente etiqueta:
+
+ISW-2021-LB-<Número>
 ```
 
 

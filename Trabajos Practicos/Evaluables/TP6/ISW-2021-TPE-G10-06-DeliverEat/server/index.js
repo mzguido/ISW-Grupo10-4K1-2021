@@ -19,6 +19,8 @@ app.get('/', (req, res) => {
 })
 
 require('./routes/creationRoutes')(app);
+require('./routes/comerceRoutes')(app);
+require('./routes/cartRoutes')(app);
 
 const PORT = 5000;
 

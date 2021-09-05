@@ -62,12 +62,14 @@ module.exports = app => {
   });
 
   app.post('/comercio/addproduct/:id', async (req, res) => {
-    const { nombre, dimension, categoria } = req.body;
+    const { nombre, dimension, categoria, image, precio } = req.body;
 
     const producto = new Producto({
       nombre,
       dimension,
-      categoria
+      categoria,
+      image,
+      precio
     });
 
     const comercio = await Comercio

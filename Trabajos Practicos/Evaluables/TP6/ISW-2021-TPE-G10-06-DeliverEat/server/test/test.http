@@ -4,22 +4,39 @@ Content-Type: application/json
 
 {
   "productos": [],
-  "horarioApertura": "17:00",
+  "horarioApertura": "20:30",
   "horarioCierre": "23:30",
-  "diasAtencion": ["lunes", "martes", "miercoles", "jueves", "viernes"],
+  "diasAtencion": ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado"],
   "tiempoPromedioAtencion": 30,
-  "ubicacion": { "ciudad": "Cordoba", "calle": "Yrigoyen", "nro": "600" },
-  "nombre": "Lomosapiens",
+  "ubicacion": { "ciudad": "Cordoba", "calle": "Ituzaingo", "nro": "960" },
+  "nombre": "Pizza 960",
   "adherido": true,
-  "tipo": "lomiteria",
-  "categoriasProducto": ["lomitos", "bebidas", "guarniciones"],
-  "seguimientoCadete": false,
-  "image": "https://images.lavoz.com.ar/resizer/TMG3WPXLJbwHbCl_8i8-0h4S-pE=/640x427/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/KEBEUMQBRFBSBMWHMPSXHKLM2U.png"
+  "tipo": "pizzeria",
+  "categoriasProducto": ["pizzas", "bebidas", "guarniciones"],
+  "seguimientoCadete": true,
+  "image": "https://www.infobae.com/new-resizer/qmQJMvCyC9GFzIumeLDCo55Vlp4=/1200x900/filters:format(jpg):quality(85)//cloudfront-us-east-1.images.arcpublishing.com/infobae/SJ2YC5V7NNDLVD25LCWEJMYA5M.jpg"
 }
 
-###
-//Request para crear el carrito
 
+# {
+#   "productos": [],
+#   "horarioApertura": "17:00",
+#   "horarioCierre": "23:30",
+#   "diasAtencion": ["lunes", "martes", "miercoles", "jueves", "viernes"],
+#   "tiempoPromedioAtencion": 30,
+#   "ubicacion": { "ciudad": "Cordoba", "calle": "Yrigoyen", "nro": "600" },
+#   "nombre": "Lomosapiens",
+#   "adherido": true,
+#   "tipo": "lomiteria",
+#   "categoriasProducto": ["lomitos", "bebidas", "guarniciones"],
+#   "seguimientoCadete": false,
+#   "image": "https://images.lavoz.com.ar/resizer/TMG3WPXLJbwHbCl_8i8-0h4S-pE=/640x427/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/KEBEUMQBRFBSBMWHMPSXHKLM2U.png"
+# }
+
+
+###
+
+//Request para crear el carrito
 POST http://localhost:5000/carrito/new
 Content-Type: application/json
 
@@ -29,13 +46,23 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5000/comercio/addproduct/613517d0399df09324be7690
+POST http://localhost:5000/comercio/addproduct/613518ca399df09324be7692
 Content-Type: application/json
 
 {
-  "nombre": "Matambre a la Pizza ",
-  "dimension": 0.001,
-  "categoria": "carnes",
-  "image": "https://www.kamadoargentino.com.ar/wp-content/uploads/2019/05/Matambre-a-la-pizza-KAmado--e1566748507729.jpeg",
-  "precio": 1500
+  "nombre": "Lomo Americano",
+  "dimension": 0.0015,
+  "categoria": "lomitos",
+  "image": "https://billylomito.com.ar/uploads/Menu/Menu%20nuevo/02_Lomo-Americano.jpg",
+  "precio": 900
 }
+
+# {
+#   "nombre": "Matambre a la Pizza ",
+#   "dimension": 0.001,
+#   "categoria": "carnes",
+#   "image": "https://www.kamadoargentino.com.ar/wp-content/uploads/2019/05/Matambre-a-la-pizza-KAmado--e1566748507729.jpeg",
+#   "precio": 1500
+# }
+
+

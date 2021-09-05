@@ -36,5 +36,6 @@ Content-Type: application/json
   "nombre": "Matambre a la Pizza ",
   "dimension": 0.001,
   "categoria": "carnes",
-  "image": "https://www.kamadoargentino.com.ar/wp-content/uploads/2019/05/Matambre-a-la-pizza-KAmado--e1566748507729.jpeg"
+  "image": "https://www.kamadoargentino.com.ar/wp-content/uploads/2019/05/Matambre-a-la-pizza-KAmado--e1566748507729.jpeg",
+  "precio": 1500
 }

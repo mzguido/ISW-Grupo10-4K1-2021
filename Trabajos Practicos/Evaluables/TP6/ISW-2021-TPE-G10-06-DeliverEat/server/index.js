@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
+const cors = require('cors');
 
 require('./models/Producto');
 require('./models/Carrito');
@@ -13,10 +14,8 @@ mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use(bodyParser.json())
-
-app.get('/', (req, res) => {
-  res.send('Hola mundovich')
-})
+app.use(cors());
+app.options('*', cors());
 
 require('./routes/creationRoutes')(app);
 require('./routes/comerceRoutes')(app);

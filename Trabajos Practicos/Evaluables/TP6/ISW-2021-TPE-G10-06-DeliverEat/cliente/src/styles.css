@@ -49,6 +49,7 @@ img.user-img {
 
 .hero {
   background: url("assets/hero-poster.jpg") center center/cover no-repeat;
+  background-attachment: fixed;
   height: 60vh;
   opacity: 1.1;
   display: flex;
@@ -58,4 +59,9 @@ img.user-img {
 
 .hero-logo {
   width: 80%;
+}
+
+.hero-container {
+  display: flex;
+  justify-content: center;
 }

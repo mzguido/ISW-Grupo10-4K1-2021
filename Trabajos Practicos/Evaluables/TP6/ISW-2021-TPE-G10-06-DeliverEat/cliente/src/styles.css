@@ -17,10 +17,14 @@ img.user-img {
   border: 0px;
 }
 
+.card:hover .card-img {
+  transform: scale(1);
+  opacity: 0.4;
+}
+
 .card-img-text {
   display: flex;
   justify-content: flex-end;
-  align-items: end;
   flex-direction: column;
 }
 
@@ -29,9 +33,29 @@ img.user-img {
   object-fit: cover;
   width: 300px;
   height: 300px;
+  transform: scale(1.15);
+  transition: transform 0.4s, opacity 0.4s;
+}
+
+.card-img:hover {
+  transform: scale(1);
+  opacity: 0.4;
 }
 
 .card {
   width: 300px;
   height: 300px;
+}
+
+.hero {
+  background: url("assets/hero-poster.jpg") center center/cover no-repeat;
+  height: 60vh;
+  opacity: 1.1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-logo {
+  width: 80%;
 }

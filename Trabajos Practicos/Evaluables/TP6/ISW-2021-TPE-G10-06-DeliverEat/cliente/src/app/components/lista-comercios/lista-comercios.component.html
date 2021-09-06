@@ -1,0 +1,12 @@
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4 my-3 ">
+    <div class="col" *ngFor="let comercio of comercios">
+        <div class="card bg-dark text-white my-card mx-auto">
+            <img [src]="comercio.image" class="card-img" alt="...">
+            <div class="card-img-overlay card-img-text">
+                <h5 class="card-title">{{comercio.nombre}}</h5>
+                <button type="button" class="btn btn-primary" (click)="verProductos(comercio)">Ver
+                    Productos</button>
+            </div>
+        </div>
+    </div>
+</div>

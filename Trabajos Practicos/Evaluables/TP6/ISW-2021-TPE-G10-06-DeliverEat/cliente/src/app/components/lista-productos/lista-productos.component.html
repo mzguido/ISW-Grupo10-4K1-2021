@@ -1,0 +1,26 @@
+<!-- <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+        <div class="card bg-dark text-white my-card">
+            <img src="../../../assets/user-img.jpg" class="card-img" alt="..." style="opacity:0.5">
+            <div class="card-img-overlay card-img-text">
+                <h5 class="card-title">Card title</h5>
+                <button type="button" class="btn btn-primary">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4 my-3 ">
+    <div class="col" *ngFor="let producto of productos">
+        <div class="card bg-dark text-white my-card mx-auto">
+            <img [src]="producto.image" class="card-img" alt="...">
+            <div class="card-img-overlay card-img-text">
+                <h5 class="card-title">{{producto.nombre}}</h5>
+                <div style="display:flex;" class='justify-content-md-end'>
+                    <h5 class="card-title">${{producto.precio}}</h5>
+                    <button type="button" class="btn btn-primary">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

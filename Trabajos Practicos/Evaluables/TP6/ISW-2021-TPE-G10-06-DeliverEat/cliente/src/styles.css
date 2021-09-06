@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* NavBar */
+
+img.user-img {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+/* Lista comercios */
+
+.card {
+  border: 0px;
+}
+
+.card-img-text {
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+  flex-direction: column;
+}
+
+.card-img {
+  opacity: 0.7;
+  object-fit: cover;
+  width: 300px;
+  height: 300px;
+}
+
+.card {
+  width: 300px;
+  height: 300px;
+}

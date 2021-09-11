@@ -31,12 +31,23 @@
 # ###
 # POST http://localhost:5000/comercio/addproduct/613545acaec2cc4e9ec0eec3
 
-# {
-#   "nombre": "Sprite 1.5L",
-#   "dimension": 0.0015,
-#   "categoria": "bebidas",
-#   "image": "http://d2r9epyceweg5n.cloudfront.net/stores/001/786/177/products/sprite-lima-limon1-eb2bb423d8c311c17c16274732371159-640-0.jpg",
-#   "precio": 160
+
+# POST http://localhost:5000/cart/add/613518ca399df09324be7692
+# Content-Type: application/json
+
+#  {
+#       "nombre": "Lomo Americano",
+#       "peso": "0.5",
+#       "dimension": 0.0015,
+#       "categoria": "lomitos",
+#       "image": "https://billylomito.com.ar/uploads/Menu/Menu%20nuevo/02_Lomo-Americano.jpg",
+#       "precio": 900,
+#       "_id": "6135482149cb4019f449cceb"
 # }
+
+# ###
+
+# POST http://localhost:5000/cart/remove/6135482149cb4019f449cceb
+
 
 

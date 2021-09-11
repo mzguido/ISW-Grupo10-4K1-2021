@@ -67,14 +67,3 @@ img.user-img {
   display: flex;
   justify-content: center;
 }
-
-/* Cart */
-
-.cart-img {
-  width: 100px;
-  height: 100px;
-}
-
-app-cantidad {
-  width: 50px;
-}

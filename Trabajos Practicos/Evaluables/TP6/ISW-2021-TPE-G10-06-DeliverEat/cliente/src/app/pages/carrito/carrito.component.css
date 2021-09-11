@@ -1,0 +1,38 @@
+.cart-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.table-data {
+  display: flex;
+  align-items: center;
+}
+
+img {
+  margin-right: 10px;
+}
+
+input {
+  text-align: center;
+}
+
+td {
+  vertical-align: middle;
+}
+
+.img-producto {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.mensaje {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mensaje > * {
+  margin: 10px 0;
+}

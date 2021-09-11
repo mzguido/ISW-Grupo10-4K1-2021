@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Carrito, Producto } from 'src/app/interfaces/producto.interface';
 import { ComerciosService } from 'src/app/services/comercios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
-  styles: [],
+  styleUrls: ['./carrito.component.css'],
 })
 export class CarritoComponent implements OnInit {
   productos: Producto[] = {} as Producto[];
   carrito: Carrito = {} as Carrito;
   montoTotal = 0;
 
-  constructor(private comercioService: ComerciosService) {}
+  constructor(private comercioService: ComerciosService, private router: Router) {}
 
   ngOnInit(): void {
     this.getProductos();
+    this.calcularTotal(); 
     // this.productos = this.comercioService.getProductosDelComercio(
     //   '613518ca399df09324be7692'
     // );
@@ -56,8 +58,13 @@ export class CarritoComponent implements OnInit {
       console.log(res);
       this.productos.map((prod) => {
         prod.cantidad = 1;
-        prod.subTotal = 0;
+        prod.subTotal = prod.precio;
       });
+      this.calcularTotal();
     });
+  }
+
+  irComercio() {
+    this.router.navigateByUrl('./comercios');
   }
 }

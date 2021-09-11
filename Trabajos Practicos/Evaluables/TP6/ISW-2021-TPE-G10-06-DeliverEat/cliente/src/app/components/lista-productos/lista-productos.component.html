@@ -17,7 +17,7 @@
                 <h5 style="display: flex;justify-content: end;" class="card-title">{{producto.nombre}}</h5>
                 <div style="display:flex; justify-content: space-between; align-items: center">
                     <h3 class="card-title">${{producto.precio}}</h3>
-                    <button type="button" class="btn btn-primary">Agregar</button>
+                    <button type="button" class="btn btn-primary" (click)="agregarProducto(producto)">Agregar</button>
                 </div>
             </div>
         </div>

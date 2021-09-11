@@ -10,6 +10,8 @@ import { ListaComerciosComponent } from './components/lista-comercios/lista-come
 import { ListaProductosComponent } from './components/lista-productos/lista-productos.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
+import { ItemCarritoComponent } from './components/item-carrito/item-carrito.component';
+import { CantidadComponent } from './components/cantidad/cantidad.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { CarritoComponent } from './pages/carrito/carrito.component';
     ListaProductosComponent,
     NavbarComponent,
     CarritoComponent,
+    ItemCarritoComponent,
+    CantidadComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

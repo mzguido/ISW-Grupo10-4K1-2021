@@ -47,6 +47,8 @@ img.user-img {
   height: 300px;
 }
 
+/* Hero */
+
 .hero {
   background: url("assets/hero-poster.jpg") center center/cover no-repeat;
   background-attachment: fixed;
@@ -64,4 +66,15 @@ img.user-img {
 .hero-container {
   display: flex;
   justify-content: center;
+}
+
+/* Cart */
+
+.cart-img {
+  width: 100px;
+  height: 100px;
+}
+
+app-cantidad {
+  width: 50px;
 }

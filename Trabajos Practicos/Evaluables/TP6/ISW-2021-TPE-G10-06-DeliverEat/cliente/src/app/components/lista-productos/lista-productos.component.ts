@@ -9,7 +9,7 @@ import { ComerciosService } from 'src/app/services/comercios.service';
   styles: [],
 })
 export class ListaProductosComponent implements OnInit {
-  id!: string;
+  idComercio!: string;
   productos: Producto[] = {} as Producto[];
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -18,9 +18,17 @@ export class ListaProductosComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      this.id = params['id'];
+      this.idComercio = params['id'];
     });
-    this.productos = this.comercioService.getProductosDelComercio(this.id);
+    this.productos = this.comercioService.getProductosDelComercio(
+      this.idComercio
+    );
     console.log(this.productos);
+  }
+
+  agregarProducto(producto: Producto): void {
+    this.comercioService
+      .agregarProducto(this.idComercio, producto)
+      .subscribe((res) => console.log(res));
   }
 }

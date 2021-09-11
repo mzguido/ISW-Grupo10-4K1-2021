@@ -1,1 +1,37 @@
-<p>carrito works!</p>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let producto of productos">
+                <td><img [src]="producto.image" class="cart-img" alt="...">{{producto.nombre}}</td>
+                <td>
+                    <div class="input-group mb-3" style="width: 130px">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="width:40px"
+                            (click)="disminuirCant(producto)">-</button>
+                        <input type="text" class="form-control" value="{{producto.cantidad}}">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="width: 40px"
+                            (click)="aumentarCant(producto)">+</button>
+                    </div>
+                </td>
+                <td>${{producto.precio}}</td>
+                <td>${{producto.precio * producto.cantidad}}</td>
+                <td>
+                    <i class="bi bi-trash" (click)="eliminarProd(producto)" style="cursor:pointer"></i>
+                </td>
+
+                <!-- <app-item-carrito [producto]="producto"></app-item-carrito> -->
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>Total: {{montoTotal}}</h1>
+
+</div>

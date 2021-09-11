@@ -5,4 +5,13 @@ export interface Producto {
   image: string;
   precio: number;
   _id: string;
+  cantidad: number;
+  subTotal: number;
+}
+
+export interface Carrito {
+  _id: string;
+  productos: Producto[];
+  dimensionMochila: number;
+  __v: number;
 }

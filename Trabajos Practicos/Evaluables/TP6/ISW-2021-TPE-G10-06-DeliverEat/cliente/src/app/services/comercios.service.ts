@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Comercio } from '../interfaces/comercio.interface';
-import { Producto } from '../interfaces/producto.interface';
+import { Carrito, Producto } from '../interfaces/producto.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,9 @@ export class ComerciosService {
   public comercios: Comercio[] = {} as Comercio[];
   public comercioSelec: Comercio = {} as Comercio;
   public productos: Producto[] = {} as Producto[];
+  public productosCarrito: Producto[] = {} as Producto[];
+  public carrito: Carrito = {} as Carrito;
+
   constructor(private http: HttpClient) {
     console.log('service ready');
     this.initService();
@@ -47,4 +50,21 @@ export class ComerciosService {
   setComercioSeleccionado(com: Comercio) {
     this.comercioSelec = com;
   }
+
+  agregarProducto(idComercio: string, producto: Producto) {
+    console.log(this.url + `cart/add/${producto._id}`);
+    return this.http.post(this.url + `cart/add/${idComercio}`, producto);
+  }
+
+  eliminarProducto(producto: Producto) {
+    console.log(this.url + `cart/remove/${producto._id}`);
+    return this.http.post(this.url + `cart/remove/${producto._id}`, producto);
+  }
+
+  getCarrito() {
+    return this.http.get<Carrito[]>(this.url + `cart`);
+  }
+  // getCarritoFalse() {
+  //   return this.http.get<Carrito>(this.url + `cart`);
+  // }
 }

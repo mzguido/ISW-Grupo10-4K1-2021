@@ -24,6 +24,8 @@ td {
 .img-producto {
   max-width: 100%;
   max-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .mensaje {
@@ -35,4 +37,44 @@ td {
 
 .mensaje > * {
   margin: 10px 0;
+}
+
+.precio {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.eliminar {
+  margin-top: 3px;
+}
+
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+@media (max-width: 768px) {
+  .nombre {
+    font-size: 90%;
+  }
+
+  .item {
+    display: none;
+  }
+
+  .cantidad {
+    text-align: center;
+  }
+}
+
+@media (min-width: 769px) {
+  .precio {
+    display: none;
+  }
+
+  .eliminar {
+    display: none;
+  }
 }

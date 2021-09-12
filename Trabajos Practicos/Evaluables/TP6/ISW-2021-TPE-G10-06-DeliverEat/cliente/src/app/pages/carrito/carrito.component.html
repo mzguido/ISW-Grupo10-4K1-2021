@@ -4,10 +4,10 @@
             <thead>
                 <tr>
                     <th scope="col">Producto</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Subtotal</th>
-                    <th scope="col"></th>
+                    <th class="cantidad" scope="col">Cantidad</th>
+                    <th class="item" scope="col">Precio</th>
+                    <th class="item" scope="col">Subtotal</th>
+                    <th class="item" sscope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -15,8 +15,9 @@
                     <td class="table-data">
                         <div class="img-producto">
                             <img [src]="producto.image" class="cart-img" alt="{{producto.nombre}}">
+                            <i class="bi bi-trash eliminar" (click)="eliminarProd(producto)" style="cursor:pointer"> Eliminar</i>
                         </div>
-                        <h5>{{producto.nombre}}</h5></td>
+                        <h5 class="nombre">{{producto.nombre}}</h5></td>
                     <td class="">
                         <div class="input-group" style="width: 130px">
                             <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="width:40px"
@@ -25,10 +26,13 @@
                             <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="width: 40px"
                                 (click)="aumentarCant(producto)">+</button>
                         </div>
+                        <div class="precio">
+                            <h5>${{producto.precio}}</h5>
+                        </div>
                     </td>
-                    <td style="font-size: 140%">${{producto.precio}}</td>
-                    <td style="font-size: 140%">${{producto.precio * producto.cantidad}}</td>
-                    <td style="font-size: 130%">
+                    <td class="item" style="font-size: 140%">${{producto.precio}}</td>
+                    <td class="item" style="font-size: 140%">${{producto.precio * producto.cantidad}}</td>
+                    <td class="item" style="font-size: 130%">
                         <i class="bi bi-trash"  (click)="eliminarProd(producto)" style="cursor:pointer"></i>
                     </td>
 
@@ -36,7 +40,22 @@
                 </tr>
             </tbody>
         </table>
-        <h1>Total ${{montoTotal}}</h1>
+        <div *ngIf="pesoTotal > 10" class="alert alert-danger" role="alert">
+            Peso excedido! Elimine algun articulo para continuar
+        </div>
+        <div *ngIf="dimensionTotal > carrito.dimensionMochila" class="alert alert-danger" role="alert">
+            Dimension excedida! Elimine algun articulo para continuar
+        </div>
+        <div class="bottom-section">
+            <h1>Total ${{montoTotal}}</h1>
+            <button 
+                [disabled]="dimensionTotal > carrito.dimensionMochila ||pesoTotal > 10"
+                type="button" 
+                class="btn btn-primary"
+            >
+            Continuar Compra
+            </button>
+        </div>
     </div>
 
 

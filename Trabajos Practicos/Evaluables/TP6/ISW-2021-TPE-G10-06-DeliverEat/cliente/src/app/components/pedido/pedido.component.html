@@ -3,11 +3,13 @@
 
         <!-- Direccion -->
         <fieldset style="border-radius: 5px; border: solid 1px #DDD; background: rgb(235, 235, 235);">
+            <legend class="text-center">Dirección</legend>
             <!-- calle -->
             <div class="form-group row m-2">
-                <label class="col-form-label col-md-3 offset-md-1">Calle:</label>
+                <label class="col-form-label col-md-2 offset-md-1">Calle:</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control col-8" name="calle" id="calle" formControlName="calle"
+                        maxlength="100"
                         [ngClass]="{'is-invalid':(FormPedido.controls.calle.touched || submitted) && FormPedido.controls.calle.errors}">
                     <span class="invalid-feedback"
                         *ngIf="(FormPedido.controls.calle.touched || submitted) && FormPedido.controls.calle.errors && FormPedido.controls.calle.errors.required ">
@@ -17,7 +19,7 @@
             </div>
             <!-- numero -->
             <div class="form-group row m-2">
-                <label class="col-form-label col-md-3 offset-md-1">Numero:</label>
+                <label class="col-form-label col-md-2 offset-md-1">Número:</label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control col-8" name="numero" id="numero" formControlName="numero"
                         [ngClass]="{'is-invalid':(FormPedido.controls.numero.touched || submitted) && FormPedido.controls.numero.errors}">
@@ -29,13 +31,13 @@
             </div>
             <!-- ciudad -->
             <div class="form-group row m-2">
-                <label class="col-form-label col-md-3 offset-md-1">Ciudad:</label>
+                <label class="col-form-label col-md-2 offset-md-1">Ciudad:</label>
                 <div class="col-sm-8">
-                    <select class="form-control col-8" name="ciudad" id="ciudad" formControlName="ciudad"
+                    <select class="form-select col-8" name="ciudad" id="ciudad" formControlName="ciudad"
                         [ngClass]="{'is-invalid':(FormPedido.controls.ciudad.touched || submitted) && FormPedido.controls.ciudad.errors}">
-                        <option value="1">CÓRDOBA</option>
-                        <option value="2">CARLOS PAZ</option>
-                        <option value="3">RÍO PRIMERO</option>
+                        <option value="1">Córdoba</option>
+                        <option value="2">Carlos Paz</option>
+                        <option value="3">Río Primero</option>
                         <option selected disabled value="4"></option>
                     </select>
                     <span class="invalid-feedback"
@@ -46,7 +48,7 @@
             </div>
             <!-- referencia -->
             <div class="form-group row m-2">
-                <label class="col-form-label col-md-3 offset-md-1">Referencia opcional:</label>
+                <label class="col-form-label col-md-2 offset-md-1">Referencia opcional:</label>
                 <div class="col-sm-8">
                     <textarea class="form-control" name="ref_opc" id="ref_opc" cols="100" rows="5"
                         placeholder="Escriba aquí..." formControlName="referencia"
@@ -60,8 +62,9 @@
         </fieldset>
 
         <!-- Forma de pago -->
-
+        <br>
         <fieldset style="border-radius: 5px; border: solid 1px #DDD; background: rgb(235, 235, 235);">
+            <legend class="text-center">Forma de pago</legend>
             <!-- total a pagar -->
             <div class="form-group row m-2">
                 <label class="col-form-label col-md-3 offset-md-1">Total a pagar: </label>
@@ -69,7 +72,7 @@
             </div>
             <!-- forma de pago -->
             <div class="form-group row m-2">
-                <label class="col-form-label col-md-3 offset-md-1">Forma de pago:</label>
+                <label class="col-form-label col-md-2 offset-md-1">Forma de pago:</label>
                 <div class="col-sm-8">
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="forma_pago1" name="formaPago" value='efectivo'
@@ -87,7 +90,7 @@
             <!--monto efectivo-->
             <div *ngIf="pagaEfectivo()">
                 <div class="form-group row m-2">
-                    <label class="col-form-label col-md-3 offset-md-1">¿Con cuanto va a abonar?:</label>
+                    <label class="col-form-label col-md-2 offset-md-1">¿Con cuánto va a abonar?:</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control col-8" name="monto" id="monto" formControlName="monto"
                             [ngClass]="{'is-invalid':(FormPedido.controls.monto.touched || submitted) && FormPedido.controls.monto.errors}">
@@ -102,7 +105,7 @@
             <!-- numero de tarjeta -->
             <div *ngIf="!pagaEfectivo()">
                 <div class="form-group row m-2">
-                    <label class="col-form-label col-md-3 offset-md-1">Número de tarjeta:</label>
+                    <label class="col-form-label col-md-2 offset-md-1">Número de tarjeta:</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control col-8" name="numeroTarjeta" id="numeroTarjeta"
                             placeholder="xxxx xxxx xxxx xxxx" formControlName="numeroTarjeta"
@@ -124,8 +127,7 @@
                 </div>
                 <!-- codigo de segurida -->
                 <div class="form-group row m-2">
-
-                    <label class="col-form-label col-md-3 offset-md-1">Código de seguridad:</label>
+                    <label class="col-form-label col-md-2 offset-md-1">Código de seguridad:</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control col-8" name="cvc" id="cvc" formControlName="cvc"
                             [ngClass]="{'is-invalid':(FormPedido.controls.cvc.touched || submitted) && FormPedido.controls.cvc.errors,
@@ -142,14 +144,14 @@
                 </div>
                 <!-- fecha de vencimiento -->
                 <div class="form-group row m-2">
-                    <label class="col-form-label col-md-3 offset-md-1">Fecha de vencimiento:</label>
+                    <label class="col-form-label col-md-2 offset-md-1">Fecha de vencimiento:</label>
                     <div class="col-sm-8">
                         <input type="month" class="form-control col-8" name="fechaTarjeta" id="fechaTarjeta"
                             formControlName="fechaTarjeta" value="2020-02"
                             [ngClass]="{'is-invalid':!fechaTarjetaValida()}">
 
                         <span class="invalid-feedback" *ngIf="(!fechaTarjetaValida()  )">
-                            Fecha invalida
+                            Fecha inválida
                         </span>
                     </div>
                 </div>
@@ -157,15 +159,12 @@
         </fieldset>
 
 
-        <!-- Tarjeta de crédito, Mostrar unicamente cuando se seleccione tarjeta de credito-->
-        <fieldset style="border-radius: 5px; border: solid 1px #DDD; background: rgb(235, 235, 235);">
-
-        </fieldset>
-
         <!-- Fecha y hora de entrega de producto -->
+        <br>
         <fieldset style="border-radius: 5px; border: solid 1px #DDD; background: rgb(235, 235, 235);">
+            <legend class="text-center">Entrega del pedido</legend>
             <div class="form-group row m-2">
-                <label class="col-form-label col-md-3 offset-md-1">¿A qué hora quiere recibir el pedido?:</label>
+                <label class="col-form-label col-md-2 offset-md-1">¿A qué hora desea recibir el pedido?:</label>
                 <div class="col-sm-8">
 
                     <div class="form-check">
@@ -199,8 +198,11 @@
                         </div>
                     </div> -->
             </div>
-
-            <button type="button" class="btn btn-primary" (click)="finalizarCompra()">Comprar</button>
         </fieldset>
+
+        <br>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="button" class="btn btn-primary" (click)="finalizarCompra()">Comprar</button>
+        </div>
     </form>
 </div>

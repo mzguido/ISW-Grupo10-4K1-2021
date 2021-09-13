@@ -5,8 +5,8 @@
                 <tr>
                     <th scope="col">Producto</th>
                     <th scope="col">Cantidad</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Subtotal</th>
+                    <th scope="col" class="d-none d-md-table-cell">Precio</th>
+                    <th scope="col" class="d-none d-md-table-cell">Subtotal</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -16,20 +16,25 @@
                         <div class="img-producto">
                             <img [src]="producto.image" class="cart-img" alt="{{producto.nombre}}">
                         </div>
-                        <h5>{{producto.nombre}}</h5></td>
+                        <h5>{{producto.nombre}}</h5>
+                    </td>
+
+
                     <td class="">
                         <div class="input-group" style="width: 130px">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="width:40px"
-                                (click)="disminuirCant(producto)">-</button>
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                                style="width:40px" (click)="disminuirCant(producto)">-</button>
                             <input type="text" class="form-control" value="{{producto.cantidad}}">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" style="width: 40px"
-                                (click)="aumentarCant(producto)">+</button>
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                                style="width: 40px" (click)="aumentarCant(producto)">+</button>
                         </div>
                     </td>
-                    <td style="font-size: 140%">${{producto.precio}}</td>
-                    <td style="font-size: 140%">${{producto.precio * producto.cantidad}}</td>
+
+                    <td class="d-none d-md-table-cell" style="font-size: 140%">${{producto.precio}}</td>
+                    <td class="d-none d-md-table-cell" style="font-size: 140%">${{producto.precio * producto.cantidad}}
+                    </td>
                     <td style="font-size: 130%">
-                        <i class="bi bi-trash"  (click)="eliminarProd(producto)" style="cursor:pointer"></i>
+                        <i class="bi bi-trash" (click)="eliminarProd(producto)" style="cursor:pointer"></i>
                     </td>
 
                     <!-- <app-item-carrito [producto]="producto"></app-item-carrito> -->

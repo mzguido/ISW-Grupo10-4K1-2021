@@ -1,0 +1,197 @@
+<div class="my-5 container">
+    <form name="FormPedido" [formGroup]="FormPedido">
+
+        <!-- Direccion -->
+        <fieldset style="border-radius: 5px; border: solid 1px #DDD; background: rgb(235, 235, 235);">
+            <!-- calle -->
+            <div class="form-group row m-2">
+                <label class="col-form-label col-md-3 offset-md-1">Calle:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control col-8" name="calle" id="calle" formControlName="calle"
+                        [ngClass]="{'is-invalid':(FormPedido.controls.calle.touched || submitted) && FormPedido.controls.calle.errors}">
+                    <span class="invalid-feedback"
+                        *ngIf="(FormPedido.controls.calle.touched || submitted) && FormPedido.controls.calle.errors && FormPedido.controls.calle.errors.required ">
+                        Dato requerido
+                    </span>
+                </div>
+            </div>
+            <!-- numero -->
+            <div class="form-group row m-2">
+                <label class="col-form-label col-md-3 offset-md-1">Numero:</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control col-8" name="numero" id="numero" formControlName="numero"
+                        [ngClass]="{'is-invalid':(FormPedido.controls.numero.touched || submitted) && FormPedido.controls.numero.errors}">
+                    <span class="invalid-feedback"
+                        *ngIf="(FormPedido.controls.numero.touched || submitted) && FormPedido.controls.numero.errors && FormPedido.controls.numero.errors.required ">
+                        Dato requerido
+                    </span>
+                </div>
+            </div>
+            <!-- ciudad -->
+            <div class="form-group row m-2">
+                <label class="col-form-label col-md-3 offset-md-1">Ciudad:</label>
+                <div class="col-sm-8">
+                    <select class="form-control col-8" name="ciudad" id="ciudad" formControlName="ciudad"
+                        [ngClass]="{'is-invalid':(FormPedido.controls.ciudad.touched || submitted) && FormPedido.controls.ciudad.errors}">
+                        <option value="1">CÓRDOBA</option>
+                        <option value="2">CARLOS PAZ</option>
+                        <option value="3">RÍO PRIMERO</option>
+                        <option selected disabled value="4"></option>
+                    </select>
+                    <span class="invalid-feedback"
+                        *ngIf="(FormPedido.controls.ciudad.touched || submitted) && FormPedido.controls.ciudad.errors && FormPedido.controls.ciudad.errors.required ">
+                        Dato requerido
+                    </span>
+                </div>
+            </div>
+            <!-- referencia -->
+            <div class="form-group row m-2">
+                <label class="col-form-label col-md-3 offset-md-1">Referencia opcional:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" name="ref_opc" id="ref_opc" cols="100" rows="5" maxlength="280"
+                        placeholder="Escriba aquí..." formControlName="referencia"></textarea>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Forma de pago -->
+
+        <fieldset style="border-radius: 5px; border: solid 1px #DDD; background: rgb(235, 235, 235);">
+            <!-- total a pagar -->
+            <div class="form-group row m-2">
+                <label class="col-form-label col-md-3 offset-md-1">Total a pagar: </label>
+                <label class="col-form-label col-md-3 ">${{total}}</label>
+            </div>
+            <!-- forma de pago -->
+            <div class="form-group row m-2">
+                <label class="col-form-label col-md-3 offset-md-1">Forma de pago:</label>
+                <div class="col-sm-8">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="forma_pago1" name="formaPago" value='efectivo'
+                            formControlName="formaPago">
+                        <label class="form-check-label" for="forma_pago1">Efectivo</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="forma_pago2" name="formaPago"
+                            value="tarjetaCredito" formControlName="formaPago">
+                        <label class="form-check-label" for="forma_pago2">Tarjeta de crédito</label>
+                    </div>
+                </div>
+            </div>
+
+            <!--monto efectivo-->
+            <div *ngIf="pagaEfectivo()">
+                <div class="form-group row m-2">
+                    <label class="col-form-label col-md-3 offset-md-1">¿Con cuanto va a abonar?:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control col-8" name="monto" id="monto" formControlName="monto"
+                            [ngClass]="{'is-invalid':(FormPedido.controls.monto.touched || submitted) && FormPedido.controls.monto.errors}">
+                        <span class="invalid-feedback"
+                            *ngIf="(FormPedido.controls.monto.touched || submitted) && FormPedido.controls.monto.errors && FormPedido.controls.monto.errors.required ">
+                            Dato requerido
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- numero de tarjeta -->
+            <div *ngIf="!pagaEfectivo()">
+                <div class="form-group row m-2">
+                    <label class="col-form-label col-md-3 offset-md-1">Número de tarjeta:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control col-8" name="numeroTarjeta" id="numeroTarjeta"
+                            placeholder="xxxx xxxx xxxx xxxx" formControlName="numeroTarjeta"
+                            [ngClass]="{'is-invalid':(FormPedido.controls.numeroTarjeta.touched || submitted) && FormPedido.controls.numeroTarjeta.errors,
+                        'is-valid': (FormPedido.controls.numeroTarjeta.dirty && !FormPedido.controls.numeroTarjeta.errors)}">
+                        <span class="invalid-feedback"
+                            *ngIf="(FormPedido.controls.numeroTarjeta.touched || submitted) && FormPedido.controls.numeroTarjeta.errors && FormPedido.controls.numeroTarjeta.errors.required ">
+                            Dato requerido
+                        </span>
+
+                        <span class="invalid-feedback"
+                            *ngIf="(FormPedido.controls.numeroTarjeta.touched || submitted) && FormPedido.controls.numeroTarjeta.errors && FormPedido.controls.numeroTarjeta.errors.pattern ">
+                            Número de tarjeta incorrecto
+                        </span>
+                        <span class="invalid-feedback" *ngIf="!esVisa()">
+                            La tarjeta ingresada no es VISA
+                        </span>
+                    </div>
+                </div>
+                <!-- codigo de segurida -->
+                <div class="form-group row m-2">
+
+                    <label class="col-form-label col-md-3 offset-md-1">Código de seguridad:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control col-8" name="cvc" id="cvc" formControlName="cvc"
+                            [ngClass]="{'is-invalid':(FormPedido.controls.cvc.touched || submitted) && FormPedido.controls.cvc.errors,
+                        'is-valid': (FormPedido.controls.cvc.touched && !FormPedido.controls.cvc.errors)}">
+                        <span class="invalid-feedback"
+                            *ngIf="(FormPedido.controls.cvc.touched || submitted) && FormPedido.controls.cvc.errors && FormPedido.controls.cvc.errors.required ">
+                            Dato requerido
+                        </span>
+                        <span class="invalid-feedback"
+                            *ngIf="(FormPedido.controls.cvc.touched || submitted) && FormPedido.controls.cvc.errors && (FormPedido.controls.cvc.errors.minlength ||FormPedido.controls.cvc.errors.maxlength  )">
+                            El codigo de seguridad debe ser de 3 dígitos
+                        </span>
+                    </div>
+                </div>
+                <!-- fecha de vencimiento -->
+                <div class="form-group row m-2">
+                    <label class="col-form-label col-md-3 offset-md-1">Fecha de vencimiento:</label>
+                    <div class="col-sm-8">
+                        <input type="month" class="form-control col-8" name="fechaTarjeta" id="fechaTarjeta"
+                            formControlName="fechaTarjeta" value="2020-02"
+                            [ngClass]="{'is-invalid':!fechaTarjetaValida()}">
+
+                        <span class="invalid-feedback" *ngIf="(!fechaTarjetaValida()  )">
+                            Fecha invalida
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+
+        <!-- Tarjeta de crédito, Mostrar unicamente cuando se seleccione tarjeta de credito-->
+        <fieldset style="border-radius: 5px; border: solid 1px #DDD; background: rgb(235, 235, 235);">
+
+        </fieldset>
+
+        <!-- Fecha y hora de entrega de producto -->
+        <fieldset style="border-radius: 5px; border: solid 1px #DDD; background: rgb(235, 235, 235);">
+            <div class="form-group row m-2">
+                <label class="col-form-label col-md-3 offset-md-1">¿A qué hora quiere recibir el pedido?:</label>
+                <div class="col-sm-8">
+
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="prioridadEntrega1" name="prioridadEntrega"
+                            formControlName="prioridadEntrega" value="antesPosible">
+                        <label class="form-check-label" for="prioridadEntrega1">Lo antes posible</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="prioridadEntrega2" name="prioridadEntrega"
+                            formControlName="prioridadEntrega" value="especificar">
+                        <label class="form-check-label" for="prioridadEntrega2">Especificar</label>
+                    </div>
+                </div>
+            </div>
+            <!--Mostrar el input unicamente cuando especificar este seleccionado-->
+            <div class="form-group row m-2" *ngIf="!esAntesPosible()">
+                <label class="col-form-label col-md-3 offset-md-1">Fecha de entrega:</label>
+                <div class="col-sm-8">
+                    <input type="datetime-local" class="form-control" name="fecha_pedido" id="fecha_pedido"
+                        formControlName="fechaEntrega">
+                </div>
+                <!-- <div class="form-group row m-2">
+                        <label class="col-form-label col-md-3 offset-md-1">Fecha de vencimiento:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control col-8" name="fechaTarjeta" id="fechaTarjeta"
+                                formControlName="fechaTarjeta">
+                        </div>
+                    </div> -->
+            </div>
+
+            <button type="button" class="btn btn-primary" (click)="finalizarCompra()">Comprar</button>
+        </fieldset>
+    </form>
+</div>

@@ -4,6 +4,7 @@ export interface Producto {
   categoria: string;
   image: string;
   precio: number;
+  peso: string;
   _id: string;
   cantidad: number;
   subTotal: number;

@@ -12,12 +12,14 @@ export class CarritoComponent implements OnInit {
   productos: Producto[] = {} as Producto[];
   carrito: Carrito = {} as Carrito;
   montoTotal = 0;
+  pesoTotal = 0;
+  dimensionTotal = 0;
 
   constructor(private comercioService: ComerciosService, private router: Router) {}
 
   ngOnInit(): void {
     this.getProductos();
-    this.calcularTotal(); 
+    this.calcularTotal();
     // this.productos = this.comercioService.getProductosDelComercio(
     //   '613518ca399df09324be7692'
     // );
@@ -37,15 +39,21 @@ export class CarritoComponent implements OnInit {
 
   calcularSubTotal(prod: Producto): void {
     prod.subTotal = prod.precio * prod.cantidad;
+    
     this.calcularTotal();
   }
 
   calcularTotal() {
     this.montoTotal = 0;
+    this.pesoTotal = 0;
+    this.dimensionTotal = 0;
     for (const prod of this.productos) {
       this.montoTotal += prod.subTotal;
+      this.pesoTotal += parseFloat(prod.peso) * prod.cantidad;
+      this.dimensionTotal += prod.dimension * prod.cantidad;
     }
   }
+
   eliminarProd(prod: Producto): void {
     this.comercioService.eliminarProducto(prod).subscribe((res) => {
       this.getProductos();
@@ -55,6 +63,7 @@ export class CarritoComponent implements OnInit {
   getProductos() {
     this.comercioService.getCarrito().subscribe((res: Carrito[]) => {
       this.productos = res[0].productos;
+      this.carrito = res[0];
       console.log(res);
       this.productos.map((prod) => {
         prod.cantidad = 1;

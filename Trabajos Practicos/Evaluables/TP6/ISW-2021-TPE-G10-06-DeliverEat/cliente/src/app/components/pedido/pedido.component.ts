@@ -13,7 +13,7 @@ export class PedidoComponent implements OnInit {
     calle: ['', [Validators.required]],
     numero: ['', [Validators.required]],
     ciudad: [, [Validators.required]],
-    referencia: ['', [Validators.required]],
+    referencia: ['', [Validators.required, Validators.maxLength(280)]],
     formaPago: ['efectivo', []],
     monto: [, [Validators.required]],
     // numeroTarjeta: [, [Validators.pattern('^4[0-9]{12}(?:[0-9]{3})?$')]],
@@ -21,7 +21,9 @@ export class PedidoComponent implements OnInit {
     cvc: [],
     fechaTarjeta: [this.getMesAnioActual()],
     prioridadEntrega: ['antesPosible'],
-    fechaEntrega: [new Date().toISOString().substring(0, 16)],
+    // fechaEntrega: [new Date().toISOString().substring(0, 16)],
+    fechaEntrega: [this.getFechaHoraActual().toISOString().substring(0, 16)],
+
     // fechaEntrega: ['2021-09-13T03:39'],
   });
   constructor(private fb: FormBuilder) {}
@@ -79,6 +81,13 @@ export class PedidoComponent implements OnInit {
         ]);
       }
     });
+
+    this.FormPedido.controls.referencia.valueChanges.subscribe((val) => {
+      console.log(this.FormPedido.controls.referencia);
+    });
+    this.FormPedido.controls.numeroTarjeta.valueChanges.subscribe((val) => {
+      console.log(val);
+    });
   }
 
   pagaEfectivo() {
@@ -96,6 +105,7 @@ export class PedidoComponent implements OnInit {
     console.log('formulario valido: ', this.FormPedido.valid);
     console.log(this.FormPedido.controls);
     this.fechaPedidoValida();
+    this.fechaEntregaValida();
   }
 
   esVisa() {
@@ -104,7 +114,8 @@ export class PedidoComponent implements OnInit {
 
     if (
       this.FormPedido.controls.numeroTarjeta.value != undefined &&
-      this.FormPedido.controls.numeroTarjeta.value[0] == 4
+      this.FormPedido.controls.numeroTarjeta.value[0] == 4 &&
+      this.FormPedido.controls.numeroTarjeta.value.length > 1
     ) {
       console.log(this.FormPedido.controls.numeroTarjeta.value);
 
@@ -167,7 +178,30 @@ export class PedidoComponent implements OnInit {
 
   getFechaHoraActual() {
     let fechaHoraSel = new Date();
-    fechaHoraSel.setMinutes(fechaHoraSel.getMinutes() + 60);
+    fechaHoraSel.setMinutes(fechaHoraSel.getMinutes() - 90);
+    console.log(fechaHoraSel);
+
+    console.log(fechaHoraSel.toISOString().substring(0, 16));
+
     return fechaHoraSel;
+  }
+
+  fechaEntregaValida() {
+    let fechaAct = this.getFechaHoraActual();
+    fechaAct.setMinutes(fechaAct.getMinutes() + 150);
+    let fechaSel = new Date(this.FormPedido.controls.fechaEntrega.value);
+    let fechaMasSemana = this.getFechaHoraActual();
+    fechaMasSemana.setDate(fechaMasSemana.getDate() + 7);
+    fechaMasSemana.setMinutes(fechaMasSemana.getMinutes() + 150);
+    console.log({ fechaAct });
+    console.log({ fechaSel });
+    console.log({ fechaMasSemana });
+
+    return fechaSel >= fechaAct && fechaSel <= fechaMasSemana;
+    // if (fechaSel >= fechaAct && fechaSel <= fechaMasSemana) {
+    //   console.log('fecha Valida');
+    // } else {
+    //   console.log('fecha invalida');
+    // }
   }
 }

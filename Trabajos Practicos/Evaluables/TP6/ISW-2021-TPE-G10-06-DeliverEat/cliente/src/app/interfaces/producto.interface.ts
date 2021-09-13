@@ -16,3 +16,9 @@ export interface Carrito {
   dimensionMochila: number;
   __v: number;
 }
+
+export interface Pedido {
+  fechaEntrega: Date;
+  direccion: string;
+  metodoPago: string;
+}

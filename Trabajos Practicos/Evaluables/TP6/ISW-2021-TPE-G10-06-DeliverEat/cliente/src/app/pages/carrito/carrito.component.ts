@@ -15,7 +15,10 @@ export class CarritoComponent implements OnInit {
   pesoTotal = 0;
   dimensionTotal = 0;
 
-  constructor(private comercioService: ComerciosService, private router: Router) {}
+  constructor(
+    private comercioService: ComerciosService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getProductos();
@@ -39,7 +42,7 @@ export class CarritoComponent implements OnInit {
 
   calcularSubTotal(prod: Producto): void {
     prod.subTotal = prod.precio * prod.cantidad;
-    
+
     this.calcularTotal();
   }
 
@@ -75,5 +78,11 @@ export class CarritoComponent implements OnInit {
 
   irComercio() {
     this.router.navigateByUrl('./comercios');
+  }
+
+  continuarCompra() {
+    this.comercioService.productosCarrito = this.productos;
+    this.comercioService.totalMontoCarrito = this.montoTotal;
+    this.router.navigateByUrl('pedido');
   }
 }

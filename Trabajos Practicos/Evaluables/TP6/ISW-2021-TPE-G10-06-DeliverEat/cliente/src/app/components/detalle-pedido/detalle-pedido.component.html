@@ -10,46 +10,32 @@
                 </tr>
             </thead>
             <tbody>
-                
-                <!-- <tr *ngFor="let producto of productos">
+
+                <tr *ngFor="let producto of productos">
                     <td class="table-data">
-                        <div class="img-producto">
-                            <img [src]="producto.image" class="cart-img" alt="{{producto.nombre}}">
-                            <i class="bi bi-trash eliminar" (click)="eliminarProd(producto)" style="cursor:pointer">
-                                Eliminar</i>
-                        </div>
+
                         <h5 class="nombre">{{producto.nombre}}</h5>
                     </td>
                     <td class="">
-                        <div class="input-group" style="width: 130px">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-                                style="width:40px" (click)="disminuirCant(producto)">-</button>
-                            <input type="text" class="form-control" value="{{producto.cantidad}}">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-                                style="width: 40px" (click)="aumentarCant(producto)">+</button>
-                        </div>
                         <div class="precio">
-                            <h5>${{producto.precio}}</h5>
+                            <h5>{{producto.cantidad}}</h5>
                         </div>
                     </td>
-                    <td class="item" style="font-size: 140%">${{producto.precio}}</td>
-                    <td class="item" style="font-size: 140%">${{producto.precio * producto.cantidad}}</td>
-                    <td class="item" style="font-size: 130%">
-                        <i class="bi bi-trash" (click)="eliminarProd(producto)" style="cursor:pointer"></i>
-                    </td> -->
+                    <!-- <td class="item" style="font-size: 140%">${{producto.precio}}</td> -->
+                    <!-- <td class="item" style="font-size: 140%">${{producto.precio * producto.cantidad}}</td> -->
+                    <td class="item" style="font-size: 140%">${{producto.subTotal}}</td>
 
                     <!-- <app-item-carrito [producto]="producto"></app-item-carrito> -->
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th class="text-right">
-                            <span class="pyBadge"
-                            >Total: 
-                            <!-- {{ TotalPrecio | currency: "$" }} -->
-                            </span>
-                        </th>
-                    </tr>
-            </tbody> 
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th class="text-right">
+                        <span class="pyBadge">Total:
+                            {{ montoTotal | currency: "$" }}
+                        </span>
+                    </th>
+                </tr>
+            </tbody>
         </table>
         <hr>
         <!-- <div class="row">
@@ -60,20 +46,37 @@
                 <h6>&nbsp;&nbsp;&nbsp;$</h6>
             </div>
         </div> -->
-        <h6>Fecha y Hora de entrega estimada:</h6>
-        <h6>Dirección:</h6>
-        <h6>Método de pago:</h6>
+        <h6>Fecha y Hora de entrega estimada: {{pedido.fechaEntrega | date:'short'}}</h6>
+        <h6>Dirección: {{pedido.direccion}}</h6>
+        <h6>Método de pago: {{pedido.metodoPago}}</h6>
 
         <br>
-        <div class="row justify-content-right">
-            <div class="col">
-                <button type="button" class="btn btn-primary">Confirmar</button>
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-danger">Cancelar</button>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary me-md-2" type="button" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Confirmar</button>
+            <button class="btn btn-danger" type="button">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Compra Realizada</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Todo listo Rayo!
+                    Enviaremos tu pedido a "calle".
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
 
-    
+
 </div>

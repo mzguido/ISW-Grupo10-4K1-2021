@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Comercio } from '../interfaces/comercio.interface';
-import { Carrito, Producto } from '../interfaces/producto.interface';
+import { Carrito, Pedido, Producto } from '../interfaces/producto.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,9 @@ export class ComerciosService {
   public comercioSelec: Comercio = {} as Comercio;
   public productos: Producto[] = {} as Producto[];
   public productosCarrito: Producto[] = {} as Producto[];
+  public totalMontoCarrito = 0;
   public carrito: Carrito = {} as Carrito;
+  public pedido: Pedido = {} as Pedido;
 
   constructor(private http: HttpClient) {
     console.log('service ready');

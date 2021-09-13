@@ -51,7 +51,7 @@
         <div class="bottom-section">
             <h1>Total ${{montoTotal}}</h1>
             <button [disabled]="dimensionTotal > carrito.dimensionMochila ||pesoTotal > 10" type="button"
-                class="btn btn-primary">
+                class="btn btn-primary" (click)="continuarCompra()">
                 Continuar Compra
             </button>
         </div>

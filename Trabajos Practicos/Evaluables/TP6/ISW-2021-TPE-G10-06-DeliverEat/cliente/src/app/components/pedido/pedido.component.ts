@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Pedido } from 'src/app/interfaces/producto.interface';
+import { ComerciosService } from 'src/app/services/comercios.service';
 
 @Component({
   selector: 'app-pedido',
@@ -7,8 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./pedido.component.css'],
 })
 export class PedidoComponent implements OnInit {
-  total = 0;
+  montoTotal = 0;
   submitted = false;
+  pedido: Pedido = {} as Pedido;
+
   FormPedido: FormGroup = this.fb.group({
     calle: ['', [Validators.required]],
     numero: ['', [Validators.required]],
@@ -26,10 +31,15 @@ export class PedidoComponent implements OnInit {
 
     // fechaEntrega: ['2021-09-13T03:39'],
   });
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private comercioService: ComerciosService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     console.log(this.FormPedido);
+    this.montoTotal = this.comercioService.totalMontoCarrito;
     this.onChanges();
   }
 
@@ -77,7 +87,7 @@ export class PedidoComponent implements OnInit {
 
         this.FormPedido.controls.monto.setValidators([
           Validators.required,
-          Validators.min(this.total),
+          Validators.min(this.montoTotal),
         ]);
       }
     });
@@ -104,8 +114,19 @@ export class PedidoComponent implements OnInit {
     this.submitted = true;
     console.log('formulario valido: ', this.FormPedido.valid);
     console.log(this.FormPedido.controls);
-    this.fechaPedidoValida();
-    this.fechaEntregaValida();
+    // this.fechaPedidoValida();
+    // this.fechaEntregaValida();
+    this.guardarDatosPedido();
+    this.router.navigateByUrl('detalle-pedido');
+  }
+
+  guardarDatosPedido() {
+    this.pedido.direccion = `${this.FormPedido.controls.calle.value} ${this.FormPedido.controls.numero.value}`;
+    this.pedido.fechaEntrega = new Date(
+      this.FormPedido.controls.fechaEntrega.value
+    );
+    this.pedido.metodoPago = this.FormPedido.controls.formaPago.value;
+    this.comercioService.pedido = this.pedido;
   }
 
   esVisa() {

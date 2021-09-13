@@ -1,0 +1,79 @@
+<div class="m-3">
+    <div class="container">
+        <h3>Detalle del pedido</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Items</th>
+                    <th class="cantidad" scope="col">Cantidad</th>
+                    <th class="item" scope="col">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <!-- <tr *ngFor="let producto of productos">
+                    <td class="table-data">
+                        <div class="img-producto">
+                            <img [src]="producto.image" class="cart-img" alt="{{producto.nombre}}">
+                            <i class="bi bi-trash eliminar" (click)="eliminarProd(producto)" style="cursor:pointer">
+                                Eliminar</i>
+                        </div>
+                        <h5 class="nombre">{{producto.nombre}}</h5>
+                    </td>
+                    <td class="">
+                        <div class="input-group" style="width: 130px">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                                style="width:40px" (click)="disminuirCant(producto)">-</button>
+                            <input type="text" class="form-control" value="{{producto.cantidad}}">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                                style="width: 40px" (click)="aumentarCant(producto)">+</button>
+                        </div>
+                        <div class="precio">
+                            <h5>${{producto.precio}}</h5>
+                        </div>
+                    </td>
+                    <td class="item" style="font-size: 140%">${{producto.precio}}</td>
+                    <td class="item" style="font-size: 140%">${{producto.precio * producto.cantidad}}</td>
+                    <td class="item" style="font-size: 130%">
+                        <i class="bi bi-trash" (click)="eliminarProd(producto)" style="cursor:pointer"></i>
+                    </td> -->
+
+                    <!-- <app-item-carrito [producto]="producto"></app-item-carrito> -->
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th class="text-right">
+                            <span class="pyBadge"
+                            >Total: 
+                            <!-- {{ TotalPrecio | currency: "$" }} -->
+                            </span>
+                        </th>
+                    </tr>
+            </tbody> 
+        </table>
+        <hr>
+        <!-- <div class="row">
+            <div class="col-md">
+                <h6>Total:</h6>
+            </div> 
+            <div class="col-md">
+                <h6>&nbsp;&nbsp;&nbsp;$</h6>
+            </div>
+        </div> -->
+        <h6>Fecha y Hora de entrega estimada:</h6>
+        <h6>Dirección:</h6>
+        <h6>Método de pago:</h6>
+
+        <br>
+        <div class="row justify-content-right">
+            <div class="col">
+                <button type="button" class="btn btn-primary">Confirmar</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-danger">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    
+</div>

@@ -10,7 +10,7 @@ import { ComerciosService } from 'src/app/services/comercios.service';
   styleUrls: ['./pedido.component.css'],
 })
 export class PedidoComponent implements OnInit {
-  montoTotal = 0;
+  montoTotal = this.comercioService.totalMontoCarrito;
   submitted = false;
   pedido: Pedido = {} as Pedido;
 
@@ -18,9 +18,9 @@ export class PedidoComponent implements OnInit {
     calle: ['', [Validators.required]],
     numero: ['', [Validators.required]],
     ciudad: [, [Validators.required]],
-    referencia: ['', [Validators.required, Validators.maxLength(280)]],
+    referencia: ['', [Validators.maxLength(280)]],
     formaPago: ['efectivo', []],
-    monto: [, [Validators.required]],
+    monto: [, [Validators.required, Validators.min(this.montoTotal)]],
     // numeroTarjeta: [, [Validators.pattern('^4[0-9]{12}(?:[0-9]{3})?$')]],
     numeroTarjeta: [],
     cvc: [],
@@ -225,4 +225,26 @@ export class PedidoComponent implements OnInit {
     //   console.log('fecha invalida');
     // }
   }
+
+  validarPedido() {
+    // return this.FormPedido.valid;
+
+    if (this.FormPedido.valid && this.fechaEntregaValida()) {
+      if (this.FormPedido.controls.formaPago.value === 'tarjetaCredito') {
+        return this.fechaTarjetaValida();
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  // if (this.esVisa()) {
+  //   console.log(' es visa');
+
+  //   return true;
+  // }
+  // console.log('no es visa');
+  // return false;
 }

@@ -53,13 +53,14 @@
         <br>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button class="btn btn-primary me-md-2" type="button" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">Confirmar</button>
-            <button class="btn btn-danger" type="button">Cancelar</button>
+                data-bs-target="#modalConfirmacion">Confirmar</button>
+            <button class="btn btn-danger" type="button" data-bs-toggle="modal"
+                data-bs-target="#modalCancelacion">Cancelar</button>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal Confirmacion-->
+    <div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -68,11 +69,32 @@
                 </div>
                 <div class="modal-body">
                     Todo listo Rayo!
-                    Enviaremos tu pedido a "calle".
+                    Enviaremos tu pedido a {{pedido.direccion}}.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        (click)='finalizarCompra()'>Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cancelacion-->
+    <div class="modal fade" id="modalCancelacion" tabindex="-2" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cancelar compra</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Esta seguro que desea cancelar la compra?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No,
+                        Continuar</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        (click)='finalizarCompra()'>Si, Cancelar</button>
                 </div>
             </div>
         </div>

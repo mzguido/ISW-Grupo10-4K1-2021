@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   Carrito,
   Pedido,
@@ -18,7 +19,10 @@ export class DetallePedidoComponent implements OnInit {
   pesoTotal = 0;
   dimensionTotal = 0;
   pedido: Pedido = {} as Pedido;
-  constructor(private comercioService: ComerciosService) {}
+  constructor(
+    private comercioService: ComerciosService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getProductos();
@@ -39,5 +43,11 @@ export class DetallePedidoComponent implements OnInit {
       this.pesoTotal += parseFloat(prod.peso) * prod.cantidad;
       this.dimensionTotal += prod.dimension * prod.cantidad;
     }
+  }
+  finalizarCompra() {
+    this.router.navigateByUrl('comercios');
+  }
+  cancelar() {
+    this.router.navigateByUrl('comercios');
   }
 }

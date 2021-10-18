@@ -13,10 +13,11 @@ export class PedidoComponent implements OnInit {
   montoTotal = this.comercioService.totalMontoCarrito;
   submitted = false;
   pedido: Pedido = {} as Pedido;
+  pedidoValido = false;
 
   FormPedido: FormGroup = this.fb.group({
     calle: ['', [Validators.required]],
-    numero: ['', [Validators.required]],
+    numero: ['', [Validators.required, Validators.maxLength(4)]],
     ciudad: [, [Validators.required]],
     referencia: ['', [Validators.maxLength(280)]],
     formaPago: ['efectivo', []],
@@ -52,23 +53,33 @@ export class PedidoComponent implements OnInit {
 
     this.FormPedido.controls.formaPago.valueChanges.subscribe((val) => {
       console.log(val);
+      this.FormPedido.updateValueAndValidity();
       if (val === 'tarjetaCredito') {
         this.FormPedido.controls.monto.clearValidators();
         this.FormPedido.controls.monto.markAsUntouched();
         this.FormPedido.controls.monto.updateValueAndValidity();
+
         this.FormPedido.controls.numeroTarjeta.setValidators([
           Validators.pattern('^4[0-9]{15,15}$'),
           Validators.required,
         ]);
+        this.FormPedido.controls.numeroTarjeta.updateValueAndValidity();
+
         this.FormPedido.controls.cvc.setValidators([
           Validators.required,
+          // Validators.min(100),
+          // Validators.max(999),
           Validators.maxLength(3),
           Validators.minLength(3),
+          Validators.pattern('[0-9]*'),
         ]);
+        this.FormPedido.controls.cvc.updateValueAndValidity();
+
         this.FormPedido.controls.fechaTarjeta.setValidators([
           Validators.required,
         ]);
-        this.FormPedido.updateValueAndValidity();
+        this.FormPedido.controls.fechaTarjeta.updateValueAndValidity();
+
         console.log(this.FormPedido.controls);
       }
 
@@ -89,7 +100,10 @@ export class PedidoComponent implements OnInit {
           Validators.required,
           Validators.min(this.montoTotal),
         ]);
+        this.FormPedido.controls.monto.updateValueAndValidity();
       }
+
+      this.FormPedido.updateValueAndValidity();
     });
 
     this.FormPedido.controls.referencia.valueChanges.subscribe((val) => {
@@ -143,6 +157,8 @@ export class PedidoComponent implements OnInit {
       return true;
     }
     console.log(this.FormPedido.controls.numeroTarjeta.value);
+    console.log(this.FormPedido.controls.cvc.value);
+    console.log(this.FormPedido.controls.cvc);
 
     return false;
   }
@@ -200,9 +216,9 @@ export class PedidoComponent implements OnInit {
   getFechaHoraActual() {
     let fechaHoraSel = new Date();
     fechaHoraSel.setMinutes(fechaHoraSel.getMinutes() - 90);
-    console.log(fechaHoraSel);
+    // console.log(fechaHoraSel);
 
-    console.log(fechaHoraSel.toISOString().substring(0, 16));
+    // console.log(fechaHoraSel.toISOString().substring(0, 16));
 
     return fechaHoraSel;
   }
@@ -214,9 +230,9 @@ export class PedidoComponent implements OnInit {
     let fechaMasSemana = this.getFechaHoraActual();
     fechaMasSemana.setDate(fechaMasSemana.getDate() + 7);
     fechaMasSemana.setMinutes(fechaMasSemana.getMinutes() + 150);
-    console.log({ fechaAct });
-    console.log({ fechaSel });
-    console.log({ fechaMasSemana });
+    // console.log({ fechaAct });
+    // console.log({ fechaSel });
+    // console.log({ fechaMasSemana });
 
     return fechaSel >= fechaAct && fechaSel <= fechaMasSemana;
     // if (fechaSel >= fechaAct && fechaSel <= fechaMasSemana) {
@@ -226,16 +242,30 @@ export class PedidoComponent implements OnInit {
     // }
   }
 
+  horaEntregaValida() {
+    let horaSel = new Date(
+      this.FormPedido.controls.fechaEntrega.value
+    ).getHours();
+    let horaActual = new Date().getHours();
+    console.log({ horaSel, horaActual });
+    console.log(horaSel >= 10 && horaSel <= 23);
+
+    return horaSel >= 10 && horaSel <= 23;
+  }
+
   validarPedido() {
     // return this.FormPedido.valid;
 
     if (this.FormPedido.valid && this.fechaEntregaValida()) {
       if (this.FormPedido.controls.formaPago.value === 'tarjetaCredito') {
+        this.pedidoValido = this.fechaTarjetaValida();
         return this.fechaTarjetaValida();
       } else {
+        this.pedidoValido = true;
         return true;
       }
     } else {
+      this.pedidoValido = false;
       return false;
     }
   }
